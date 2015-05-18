@@ -1,0 +1,23 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:monkey="http://namespaces.plone.org/monkey">
+
+  <include package="collective.monkeypatcher" />
+
+  <monkey:patch
+      description="This allows ':' in content ids to pass Omni Presence
+                   conformance test"
+      module="OFS.ObjectManager"
+      original="bad_id"
+      replacement=".bad_id"
+      />
+
+  <monkey:patch
+      description="This prevents 'Date'-header being added twice into
+                   webdav Collection requests"
+      class="webdav.Collection.Collection"
+      original="dav__init"
+      replacement=".dav__init"
+      />
+
+</configure>
